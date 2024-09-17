@@ -10,7 +10,7 @@ $siswa = [
 $totalNilai = 0;
 foreach ($siswa as $dataSiswa) {
     $totalNilai += $dataSiswa['nilai'];
-}
+};
 
 $rataRataKelas = $totalNilai / count($siswa);
 
@@ -21,5 +21,5 @@ foreach ($siswa as $dataSiswa) {
     if ($dataSiswa['nilai'] > $rataRataKelas) {
         echo "Nama: " . $dataSiswa['nama'] . ", Nilai: " . $dataSiswa['nilai'] . "<br>";
     }
-}
+};
 ?>
