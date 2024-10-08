@@ -13,5 +13,4 @@ if (isset($data["nama"])) {
 } else {
     echo "Variabel 'nama' tidak ditemukan dalam array.";
 }
-
 ?>
