@@ -1,37 +1,23 @@
-<?php
-if (isset($_FILES['files'])) {
-    $errors = array();
-    $allowed_extensions = array("jpg", "jpeg", "png", "gif"); // Allowed image types
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="upload.css">
+    <title>Unggah File Dokumen</title>
+</head>
+<body>
+    <div class="upload-form-container">
+        <h2>Unggah File Dokumen</h2>
+        <form id="upload-form" action="upload.php" method="post" enctype="multipart/form-data">
+            <div class="file-input-container">
+                <input type="file" name="file" id="file" class="file-input">
+                <label for="file" class="file-label">Pilih File</label>
+            </div>
+            <button type="submit" name="submit" class="upload-button" id="upload-button" disabled>Unggah</button>
+        </form>
+        <div id="status" class="upload-status"></div>
+    </div>
 
-    // Loop through all uploaded files
-    for ($i = 0; $i < count($_FILES['files']['name']); $i++) {
-        $file_name = $_FILES['files']['name'][$i];
-        $file_size = $_FILES['files']['size'][$i];
-        $file_tmp = $_FILES['files']['tmp_name'][$i];
-        $file_ext = strtolower(end(explode('.', $_FILES['files']['name'][$i])));
-        
-        // Check if the file extension is allowed
-        if (in_array($file_ext, $allowed_extensions) === false) {
-            $errors[] = "$file_name memiliki ekstensi yang tidak diizinkan. Hanya JPG, JPEG, PNG, atau GIF yang diperbolehkan.";
-        }
-
-        // Check if the file size exceeds the limit
-        if ($file_size > 2097152) { // 2MB size limit
-            $errors[] = "$file_name melebihi ukuran maksimum 2MB.";
-        }
-
-        // If no errors, move the uploaded file
-        if (empty($errors) == true) {
-            move_uploaded_file($file_tmp, "images/" . $file_name);
-            echo "File $file_name berhasil diunggah.<br>";
-        }
-    }
-
-    // Display any errors
-    if (!empty($errors)) {
-        echo implode("<br>", $errors);
-    }
-} else {
-    echo "Tidak ada file yang diunggah.";
-}
-?>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="upload.js"></script>
+</body>
+</html>
